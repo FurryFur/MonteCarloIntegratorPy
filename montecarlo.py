@@ -7,8 +7,8 @@ phi_min = 0.0
 phi_max = 2.0 * np.pi
 spec_pow = 10
 surface_normal = np.array([0, 0, 1])
-in_samples = 8000
-refl_samples = 1000
+in_samples = 1000
+refl_samples = 3000
 
 
 def blinn_phong(light_dir_in, light_dir_out):
@@ -37,9 +37,9 @@ for i in range(in_samples):
     theta_i = incoming_zenith_angles[i]
     phi_i = incoming_azimuth_angles[i]
     light_dir_in = np.array([
-        0,
-        0,
-        1
+        np.sin(theta_i) * np.cos(phi_i),
+        np.sin(theta_i) * np.sin(phi_i),
+        np.cos(theta_i)
     ])
 
     brdf_sum = 0
